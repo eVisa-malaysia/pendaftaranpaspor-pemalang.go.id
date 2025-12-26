@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Selesai - Ditjen Imigrasi</title>
+    <title>Permohonan Berhasil - Ditjen Imigrasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -118,112 +118,196 @@
             margin: 20px 0;
             text-align: center;
             box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
         .success-icon {
-            font-size: 3rem;
+            font-size: 4rem;
             color: var(--success-color);
             margin-bottom: 15px;
-            animation: checkmark 0.5s ease-in-out;
+            animation: checkmark 0.8s ease-in-out;
+            position: relative;
+            z-index: 1;
         }
         
         @keyframes checkmark {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
         }
         
         .success-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--success-color);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
         
         .success-message {
-            font-size: 1.1rem;
-            color: #155724;
-            margin-bottom: 15px;
-        }
-        
-        /* Waiting Info Styles */
-        .waiting-container {
-            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
-            border: 2px solid var(--info-color);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.2);
-        }
-        
-        .waiting-icon {
-            font-size: 3rem;
-            color: var(--info-color);
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .waiting-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--info-color);
-            margin-bottom: 15px;
-        }
-        
-        .waiting-message {
-            font-size: 1rem;
-            color: #0c5460;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .countdown-container {
-            background-color: white;
-            border: 2px solid var(--info-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .countdown-label {
-            font-size: 1rem;
-            color: #6c757d;
-            margin-bottom: 10px;
-        }
-        
-        .countdown {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-        }
-        
-        .target-time {
             font-size: 1.2rem;
-            color: var(--info-color);
-            margin-top: 10px;
-            font-weight: bold;
+            color: #155724;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .status-badge {
             display: inline-block;
             background-color: var(--success-color);
             color: white;
-            padding: 5px 15px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+        }
+        
+        /* Email Notification Styles */
+        .email-container {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2);
+        }
+        
+        .email-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .email-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .email-address {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            background-color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .email-note {
+            font-size: 1rem;
+            color: #0c5460;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Progress Steps */
+        .step-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--success-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background-color: var(--success-color);
+            z-index: 1;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress {
+            height: 12px;
+            border-radius: 6px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--success-color), #34ce57);
+            border-radius: 6px;
+            width: 100%;
+            animation: progressAnimation 2s ease-in-out;
+        }
+        
+        @keyframes progressAnimation {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
         
         .info-box {
@@ -245,117 +329,92 @@
             line-height: 1.5;
         }
         
-        .progress-container {
-            margin: 20px 0;
-        }
-        
-        .progress {
-            height: 10px;
-            border-radius: 5px;
-            background-color: #e9ecef;
-        }
-        
-        .progress-bar {
-            background-color: var(--success-color);
-            border-radius: 5px;
-            width: 100%;
-        }
-        
-        .step-container {
+        .action-buttons {
             display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            position: relative;
-        }
-        
-        .step {
-            text-align: center;
-            flex: 1;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .step-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--success-color);
-            color: white;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 0 auto 10px;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            padding: 12px 25px;
+            border-radius: 50px;
             font-weight: bold;
-        }
-        
-        .step-label {
-            font-size: 0.8rem;
-            color: var(--text-color);
-        }
-        
-        .step-line {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: var(--success-color);
-            z-index: 1;
-        }
-        
-        .notification-bell {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .notification-bell:hover {
-            transform: scale(1.1);
-            background-color: var(--secondary-color);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: var(--danger-color);
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .btn-download {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 6px rgba(0, 102, 204, 0.3);
+        }
+        
+        .btn-download:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 102, 204, 0.4);
+            color: white;
+        }
+        
+        .btn-print {
+            background-color: var(--info-color);
+            box-shadow: 0 4px 6px rgba(23, 162, 184, 0.3);
+        }
+        
+        .btn-print:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(23, 162, 184, 0.4);
+            color: white;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            position: absolute;
+            animation: confetti-fall 3s linear;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
         @media (max-width: 576px) {
-            .countdown {
-                font-size: 2rem;
+            .success-title {
+                font-size: 1.5rem;
+            }
+            
+            .success-message {
+                font-size: 1rem;
             }
             
             .step-label {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
             }
             
-            .notification-bell {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .step-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-action {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -376,49 +435,36 @@
     <main class="content">
         <div class="container">
             <!-- Success Message -->
-            <div class="success-container">
+            <div class="success-container" id="successContainer">
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="success-title">SEMUA MASALAH TELAH TERSELESAIKAN</div>
-                <div class="success-message">Terima kasih, semua masalah telah diselesaikan dengan baik</div>
+                <div class="success-title">PERMOHONAN ANDA SUDAH BERHASIL</div>
+                <div class="success-message">Terima kasih, proses permohonan paspor Anda telah selesai diproses</div>
                 <div class="status-badge">
-                    <i class="fas fa-check me-1"></i> VERIFIKASI SELESAI
+                    <i class="fas fa-trophy me-1"></i> PROSES SELESAI 100%
                 </div>
             </div>
             
-            <!-- Waiting Information -->
-            <div class="waiting-container">
-                <div class="waiting-icon">
-                    <i class="fas fa-clock"></i>
+            <!-- Email Notification -->
+            <div class="email-container">
+                <div class="email-icon">
+                    <i class="fas fa-envelope-open-text"></i>
                 </div>
-                <div class="waiting-title">MOHON BERSABAR</div>
-                <div class="waiting-message">
-                    Untuk mendapatkan surat jadwal kedatangan Anda, perlu menunggu sampai data diverifikasi di jam kerja. Silahkan tunggu sampai pukul 08:00 WIB.
+                <div class="email-title">SURAT JADWAL KEDATANGAN TELAH DIKIRIM</div>
+                <div class="email-address">
+                    <i class="fas fa-at me-2"></i> agency***@**lang.com
                 </div>
-                
-                <div class="countdown-container">
-                    <div class="countdown-label">WAKTU TERSISA SAMPAI JAM KERJA</div>
-                    <div class="countdown" id="countdown">00:00:00</div>
-                    <div class="target-time">
-                        <i class="fas fa-sun me-2"></i> Jam Kerja Dimulai: 08:00 WIB
-                    </div>
-                </div>
-                
-                <div class="info-box">
-                    <div class="info-box-title">
-                        <i class="fas fa-info-circle me-2"></i> INFORMASI PENTING
-                    </div>
-                    <div class="info-box-content">
-                        Surat jadwal kedatangan akan dikirimkan melalui email dan SMS setelah proses verifikasi selesai pada jam kerja. Pastikan nomor telepon dan email Anda aktif.
-                    </div>
+                <div class="email-note">
+                    Surat jadwal kedatangan telah dikirim ke alamat email agency. Silahkan periksa inbox atau folder spam Anda. 
+                    Pastikan untuk membawa surat jadwal saat kedatangan ke kantor imigrasi.
                 </div>
             </div>
             
             <!-- Progress Steps -->
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-tasks me-2"></i> STATUS PROSES
+                    <i class="fas fa-tasks me-2"></i> STATUS PROSES SELESAI
                 </div>
                 <div class="card-body">
                     <div class="step-container">
@@ -442,18 +488,32 @@
                             <div class="step-label">Verifikasi</div>
                         </div>
                         <div class="step">
-                            <div class="step-icon" style="background-color: #6c757d;">
-                                <i class="fas fa-clock"></i>
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
                             </div>
-                            <div class="step-label">Jadwal</div>
+                            <div class="step-label">Jadwal Terkirim</div>
                         </div>
                     </div>
                     
                     <div class="progress-container">
                         <div class="progress">
-                            <div class="progress-bar" style="width: 75%;"></div>
+                            <div class="progress-bar"></div>
                         </div>
-                        <small class="text-muted">Proses Selesai: 75%</small>
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <small class="text-muted">Proses Selesai</small>
+                            <small class="text-success font-weight-bold">100%</small>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-action btn-download" onclick="downloadReceipt()">
+                            <i class="fas fa-download"></i>
+                            Unduh Bukti
+                        </button>
+                        <button class="btn-action btn-print" onclick="printPage()">
+                            <i class="fas fa-print"></i>
+                            Cetak Halaman
+                        </button>
                     </div>
                 </div>
             </div>
@@ -507,6 +567,14 @@
                             </span>
                         </div>
                     </div>
+                    <div class="data-row">
+                        <div class="data-label">Status Jadwal</div>
+                        <div class="data-value">
+                            <span style="color: var(--success-color); font-weight: bold;">
+                                <i class="fas fa-envelope"></i> TERKIRIM
+                            </span>
+                        </div>
+                    </div>
                     
                     <div class="guarantee-note" style="font-size: 0.85rem; font-style: italic; color: #6c757d; margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
                         <i class="fas fa-info-circle me-1"></i> Data pemohon ini telah dijamin sepenuhnya oleh penjamin Agency Indonesia.
@@ -516,21 +584,27 @@
             
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-shield-alt me-2"></i> KETENTUAN HUKUM
+                    <i class="fas fa-info-circle me-2"></i> INFORMASI PENTING
                 </div>
                 <div class="card-body">
-                    <p>Pendaftaran ini dilindungi undang-undang Kementerian Hukum dan Hak Asasi Manusia sebagai pengayom masyarakat yang berlaku di Indonesia.</p>
-                    <p>Semua data yang telah dimasukkan adalah benar dan dapat dipertanggungjawabkan secara hukum.</p>
+                    <div class="info-box">
+                        <div class="info-box-title">
+                            <i class="fas fa-exclamation-triangle me-2"></i> PERSIAPAN KEDATANGAN
+                        </div>
+                        <div class="info-box-content">
+                            <ul style="padding-left: 20px; margin-bottom: 0;">
+                                <li>Bawa surat jadwal kedatangan yang telah dikirim ke email</li>
+                                <li>Siapkan dokumen asli (KTP, KK, Akta Kelahiran, dll)</li>
+                                <li>Gunakan pakaian rapi dan sopan</li>
+                                <li>Datang 15 menit sebelum jadwal yang ditentukan</li>
+                                <li>Ikuti semua prosedur yang berlaku di kantor imigrasi</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- Notification Bell -->
-    <div class="notification-bell" id="notificationBell">
-        <i class="fas fa-bell"></i>
-        <div class="notification-badge">1</div>
-    </div>
 
     <footer class="footer">
         <div class="container">
@@ -540,79 +614,95 @@
     </footer>
 
     <script>
-        // Calculate time until 08:00 WIB
-        function updateCountdown() {
-            const now = new Date();
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#28a745', '#17a2b8', '#ffc107', '#dc3545', '#6f42c1'];
+            const confettiCount = 50;
             
-            // Set target time to 08:00 WIB today or tomorrow
-            let targetTime = new Date();
-            targetTime.setHours(8, 0, 0, 0);
-            
-            // If it's already past 08:00, set to tomorrow
-            if (now > targetTime) {
-                targetTime.setDate(targetTime.getDate() + 1);
-            }
-            
-            // Calculate difference
-            const diff = targetTime - now;
-            
-            if (diff > 0) {
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                const formattedTime = 
-                    (hours < 10 ? "0" : "") + hours + ":" +
-                    (minutes < 10 ? "0" : "") + minutes + ":" +
-                    (seconds < 10 ? "0" : "") + seconds;
-                
-                document.getElementById("countdown").textContent = formattedTime;
-            } else {
-                document.getElementById("countdown").textContent = "00:00:00";
-                // Show notification that it's working hours
-                showWorkingHoursNotification();
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.getElementById('successContainer').appendChild(confetti);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
             }
         }
         
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
+        // Trigger confetti on page load
+        window.addEventListener('load', createConfetti);
         
-        // Notification bell functionality
-        const notificationBell = document.getElementById("notificationBell");
-        
-        notificationBell.onclick = function() {
-            alert("Notifikasi: Surat jadwal kedatangan akan dikirimkan melalui email dan SMS setelah jam kerja dimulai. Pastikan kontak Anda aktif.");
+        // Download receipt function
+        function downloadReceipt() {
+            // Create a temporary element to simulate download
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(
+                'BUKTI PEMBAYARAN PASPOR ELEKTRONIK\n' +
+                '=====================================\n\n' +
+                'Nama Pemohon: MOH ABDUL QOLID MAWARDI\n' +
+                'NIK: 3328131006980005\n' +
+                'Kantor Imigrasi: Kelas I Non TPI Pemalang\n' +
+                'Tanggal Pendaftaran: 26-12-2025, 21:30 WIB\n' +
+                'Tanggal Kedatangan: 29-12-2025, 13:30 WIB\n' +
+                'Status: BERHASIL\n\n' +
+                'Pembayaran:\n' +
+                '- Paspor Elektronik 5 Tahun: Rp 653.500,00\n' +
+                '- Beban Tambahan: Rp 353.500,00\n' +
+                'Total: Rp 1.007.000,00\n\n' +
+                'Diterbitkan oleh:\n' +
+                'Direktorat Jenderal Imigrasi\n' +
+                'Kementerian Hukum dan HAM RI\n' +
+                'Tanggal: ' + new Date().toLocaleDateString('id-ID')
+            ));
+            element.setAttribute('download', 'Bukti_Pembayaran_Paspor_' + new Date().getTime() + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
             
-            // Remove badge after clicking
-            const badge = notificationBell.querySelector(".notification-badge");
-            if (badge) {
-                badge.style.display = "none";
-            }
-        };
-        
-        function showWorkingHoursNotification() {
-            // Change the waiting container to show it's working hours
-            const waitingContainer = document.querySelector(".waiting-container");
-            waitingContainer.innerHTML = `
-                <div class="waiting-icon" style="color: var(--success-color);">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="waiting-title" style="color: var(--success-color);">JAM KERJA TELAH DIMULAI</div>
-                <div class="waiting-message">
-                    Proses verifikasi sedang berlangsung. Surat jadwal kedatangan akan segera dikirimkan melalui email dan SMS.
-                </div>
-                <div class="status-badge" style="background-color: var(--info-color);">
-                    <i class="fas fa-spinner fa-spin me-1"></i> SEDANG DIPROSES
-                </div>
-            `;
+            // Show success message
+            const btn = event.target.closest('.btn-download');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check me-2"></i> Terunduh!';
+            btn.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = '';
+            }, 2000);
         }
         
-        // Simulate receiving notification after some time
-        setTimeout(() => {
-            // You can add more sophisticated notification logic here
-            console.log("Checking for updates...");
-        }, 30000); // Check every 30 seconds
+        // Print page function
+        function printPage() {
+            window.print();
+        }
+        
+        // Add print styles
+        const printStyles = document.createElement('style');
+        printStyles.innerHTML = `
+            @media print {
+                .header, .footer, .action-buttons {
+                    display: none !important;
+                }
+                .card {
+                    box-shadow: none !important;
+                    border: 1px solid #ddd !important;
+                    break-inside: avoid;
+                }
+                body {
+                    background: white !important;
+                }
+            }
+        `;
+        document.head.appendChild(printStyles);
     </script>
 </body>
 </html>
