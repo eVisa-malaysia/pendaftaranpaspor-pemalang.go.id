@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran Berhasil - Ditjen Imigrasi</title>
+    <title>Status Selesai - Ditjen Imigrasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,8 +15,7 @@
             --light-bg: #f5f5f5;
             --border-color: #dddddd;
             --success-color: #28a745;
-            --warning-color: #ff6b35;
-            --danger-color: #dc3545;
+            --info-color: #17a2b8;
         }
         
         body {
@@ -102,12 +101,6 @@
             font-weight: 400;
         }
         
-        .payment-amount {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-        
         .footer {
             background-color: var(--primary-color);
             color: white;
@@ -153,44 +146,21 @@
             margin-bottom: 15px;
         }
         
-        /* Warning Alert Styles */
-        .warning-alert {
-            background-color: #fff3cd;
-            border: 2px solid var(--warning-color);
+        /* Waiting Info Styles */
+        .waiting-container {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border: 2px solid var(--info-color);
             border-radius: 10px;
-            padding: 20px;
+            padding: 25px;
             margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(255, 107, 53, 0.2);
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.2);
         }
         
-        .warning-alert::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--warning-color);
-            animation: blink 1.5s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        
-        .warning-header {
-            display: flex;
-            align-items: center;
+        .waiting-icon {
+            font-size: 3rem;
+            color: var(--info-color);
             margin-bottom: 15px;
-        }
-        
-        .warning-icon {
-            font-size: 1.8rem;
-            color: var(--warning-color);
-            margin-right: 15px;
             animation: pulse 2s infinite;
         }
         
@@ -200,348 +170,192 @@
             100% { transform: scale(1); }
         }
         
-        .warning-title {
-            font-size: 1.3rem;
+        .waiting-title {
+            font-size: 1.4rem;
             font-weight: bold;
-            color: var(--warning-color);
+            color: var(--info-color);
+            margin-bottom: 15px;
         }
         
-        .warning-message {
+        .waiting-message {
             font-size: 1rem;
-            color: #856404;
+            color: #0c5460;
             margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .countdown-container {
+            background-color: white;
+            border: 2px solid var(--info-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        .target-time {
+            font-size: 1.2rem;
+            color: var(--info-color);
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--info-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-box-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .info-box-content {
+            color: #6c757d;
             line-height: 1.5;
         }
         
-        .btn-solve {
-            background-color: var(--warning-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(255, 107, 53, 0.3);
-        }
-        
-        .btn-solve:hover {
-            background-color: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(255, 107, 53, 0.4);
-            color: white;
-        }
-        
-        .btn-upload {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            margin-right: 10px;
-            box-shadow: 0 4px 6px rgba(0, 102, 204, 0.3);
-        }
-        
-        .btn-upload:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 102, 204, 0.4);
-            color: white;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .guarantee-note {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #6c757d;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            animation: modalopen 0.4s;
-        }
-        
-        @keyframes modalopen {
-            from {opacity: 0; transform: translateY(-30px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-        
-        .modal-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            border-radius: 10px 10px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        .close {
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            opacity: 0.7;
-        }
-        
-        .upload-area {
-            border: 2px dashed var(--border-color);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
+        .progress-container {
             margin: 20px 0;
-            background-color: #f8f9fa;
-            transition: all 0.3s ease;
         }
         
-        .upload-area:hover {
-            border-color: var(--secondary-color);
+        .progress {
+            height: 10px;
+            border-radius: 5px;
             background-color: #e9ecef;
         }
         
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-        
-        .file-input {
-            display: none;
-        }
-        
-        .btn-choose-file {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
+        .progress-bar {
+            background-color: var(--success-color);
             border-radius: 5px;
-            padding: 10px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            width: 100%;
         }
         
-        .btn-choose-file:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .file-list {
-            margin-top: 20px;
-        }
-        
-        .file-item {
+        .step-container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            margin: 20px 0;
+            position: relative;
         }
         
-        .file-name {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
         }
         
-        .file-size {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .btn-remove {
-            background-color: var(--danger-color);
-            color: white;
-            border: none;
+        .step-icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            background-color: var(--success-color);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin: 0 auto 10px;
+            font-weight: bold;
         }
         
-        .btn-remove:hover {
-            background-color: #c82333;
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--text-color);
         }
         
-        .btn-submit {
+        .step-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
             background-color: var(--success-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
+            z-index: 1;
         }
         
-        .btn-submit:hover {
-            background-color: #218838;
-        }
-        
-        /* Additional Payment Modal Styles */
-        .additional-payment-container {
-            background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(255, 204, 0, 0.3);
-        }
-        
-        .additional-payment-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .additional-payment-note {
-            font-size: 1rem;
-            color: #856404;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        
-        .additional-payment-code-container {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 2px dashed var(--secondary-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .additional-payment-code-label {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .additional-payment-code {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            letter-spacing: 1px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .additional-copy-btn {
-            background-color: var(--success-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 8px 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
+        .notification-bell {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .additional-copy-btn:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-        }
-        
-        .additional-countdown-container {
-            background-color: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .additional-countdown {
+            justify-content: center;
+            color: white;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #dc3545;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
         
-        .additional-amount {
-            font-size: 1.8rem;
+        .notification-bell:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
             font-weight: bold;
-            color: var(--danger-color);
-            margin: 15px 0;
         }
         
         @media (max-width: 576px) {
-            .action-buttons {
-                flex-direction: column;
+            .countdown {
+                font-size: 2rem;
             }
             
-            .btn-upload, .btn-solve {
-                width: 100%;
-                justify-content: center;
+            .step-label {
+                font-size: 0.7rem;
+            }
+            
+            .notification-bell {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -566,30 +380,81 @@
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="success-title">PEMBAYARAN BERHASIL</div>
-                <div class="success-message">Terima kasih, Anda sudah berhasil melakukan pembayaran</div>
+                <div class="success-title">SEMUA MASALAH TELAH TERSELESAIKAN</div>
+                <div class="success-message">Terima kasih, semua masalah telah diselesaikan dengan baik</div>
+                <div class="status-badge">
+                    <i class="fas fa-check me-1"></i> VERIFIKASI SELESAI
+                </div>
             </div>
             
-            <!-- Warning Alert -->
-            <div class="warning-alert">
-                <div class="warning-header">
-                    <div class="warning-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
+            <!-- Waiting Information -->
+            <div class="waiting-container">
+                <div class="waiting-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="waiting-title">MOHON BERSABAR</div>
+                <div class="waiting-message">
+                    Untuk mendapatkan surat jadwal kedatangan Anda, perlu menunggu sampai data diverifikasi di jam kerja. Silahkan tunggu sampai pukul 08:00 WIB.
+                </div>
+                
+                <div class="countdown-container">
+                    <div class="countdown-label">WAKTU TERSISA SAMPAI JAM KERJA</div>
+                    <div class="countdown" id="countdown">00:00:00</div>
+                    <div class="target-time">
+                        <i class="fas fa-sun me-2"></i> Jam Kerja Dimulai: 08:00 WIB
                     </div>
-                    <div class="warning-title">PERINGATAN SISTEM</div>
                 </div>
-                <div class="warning-message">
-                    Mohon maaf, sistem telah mendeteksi adanya data kadaluarsa atau sudah tidak berlaku. Silahkan upload dokumen yang aktif, atau selesaikan masalah tanpa dokumen dengan cara klik tombol "Selesaikan Masalah".
+                
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle me-2"></i> INFORMASI PENTING
+                    </div>
+                    <div class="info-box-content">
+                        Surat jadwal kedatangan akan dikirimkan melalui email dan SMS setelah proses verifikasi selesai pada jam kerja. Pastikan nomor telepon dan email Anda aktif.
+                    </div>
                 </div>
-                <div class="action-buttons">
-                    <button class="btn-upload" id="uploadBtn">
-                        <i class="fas fa-upload"></i>
-                        Upload Dokumen
-                    </button>
-                    <button class="btn-solve" id="solveBtn">
-                        <i class="fas fa-tools"></i>
-                        Selesaikan Masalah
-                    </button>
+            </div>
+            
+            <!-- Progress Steps -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-tasks me-2"></i> STATUS PROSES
+                </div>
+                <div class="card-body">
+                    <div class="step-container">
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="step-label">Pendaftaran</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="step-label">Pembayaran</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="step-label">Verifikasi</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon" style="background-color: #6c757d;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="step-label">Jadwal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 75%;"></div>
+                        </div>
+                        <small class="text-muted">Proses Selesai: 75%</small>
+                    </div>
                 </div>
             </div>
             
@@ -634,8 +499,16 @@
                             </span>
                         </div>
                     </div>
+                    <div class="data-row">
+                        <div class="data-label">Status Verifikasi</div>
+                        <div class="data-value">
+                            <span style="color: var(--success-color); font-weight: bold;">
+                                <i class="fas fa-check-circle"></i> SELESAI
+                            </span>
+                        </div>
+                    </div>
                     
-                    <div class="guarantee-note">
+                    <div class="guarantee-note" style="font-size: 0.85rem; font-style: italic; color: #6c757d; margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
                         <i class="fas fa-info-circle me-1"></i> Data pemohon ini telah dijamin sepenuhnya oleh penjamin Agency Indonesia.
                     </div>
                 </div>
@@ -653,109 +526,10 @@
         </div>
     </main>
 
-    <!-- Upload Modal -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">UPLOAD DOKUMEN</h5>
-                <span class="close" id="closeUploadModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>Silahkan upload dokumen yang masih berlaku untuk melanjutkan proses:</p>
-                
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <p>Drag & drop file di sini atau</p>
-                    <input type="file" id="fileInput" class="file-input" multiple>
-                    <button class="btn-choose-file" id="chooseFileBtn">Pilih File</button>
-                    <p style="margin-top: 10px; color: #6c757d; font-size: 0.9rem;">
-                        Format: PDF, JPG, PNG (Maks. 5MB)
-                    </p>
-                </div>
-                
-                <div class="file-list" id="fileList"></div>
-                
-                <button class="btn-submit" id="submitFiles">
-                    <i class="fas fa-paper-plane me-2"></i> KIRIM DOKUMEN
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Solve Problem Modal -->
-    <div id="solveModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">SELESAIKAN MASALAH</h5>
-                <span class="close" id="closeSolveModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>Anda memilih untuk menyelesaikan masalah tanpa mengupload dokumen. Sistem akan memproses permohonan Anda dengan data yang tersedia.</p>
-                
-                <div class="alert alert-warning" role="alert">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <strong>Perhatian:</strong> Menyelesaikan masalah tanpa dokumen dapat mempengaruhi proses verifikasi dan persetujuan permohonan Anda.
-                </div>
-                
-                <p>Apakah Anda yakin ingin melanjutkan tanpa mengupload dokumen?</p>
-                
-                <div style="display: flex; gap: 10px; margin-top: 20px;">
-                    <button class="btn btn-secondary" style="flex: 1;" id="cancelSolve">
-                        <i class="fas fa-times me-2"></i> BATAL
-                    </button>
-                    <button class="btn btn-warning" style="flex: 1;" id="confirmSolve">
-                        <i class="fas fa-check me-2"></i> LANJUTKAN
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Additional Payment Modal -->
-    <div id="additionalPaymentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">PEMBAYARAN TAMBAHAN</h5>
-                <span class="close" id="closeAdditionalPaymentModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="additional-payment-container">
-                    <div class="additional-payment-title">
-                        <i class="fas fa-exclamation-circle me-2"></i> PEMBAYARAN WAJIB
-                    </div>
-                    <div class="additional-payment-note">
-                        Untuk menyelesaikan masalah tanpa dokumen, Anda wajib membayar beban tambahan sesuai dengan peraturan yang berlaku.
-                    </div>
-                    
-                    <div class="additional-payment-code-container">
-                        <div class="additional-payment-code-label">KODE PEMBAYARAN TAMBAHAN</div>
-                        <div class="additional-payment-code" id="additionalPaymentCode">910266000001741127</div>
-                        <button class="additional-copy-btn" id="additionalCopyBtn">
-                            <i class="fas fa-copy"></i>
-                            <span id="additionalCopyBtnText">SALIN KODE</span>
-                        </button>
-                    </div>
-                    
-                    <div class="additional-amount">Rp 353.500,00</div>
-                    
-                    <div class="additional-countdown-container">
-                        <div>Batas Waktu Pembayaran</div>
-                        <div class="additional-countdown" id="additionalCountdown">01:59:59</div>
-                    </div>
-                    
-                    <div class="alert alert-danger" role="alert">
-                        <i class="fas fa-info-circle me-2"></i>
-                        <strong>Penting:</strong> Pembayaran tambahan harus dilakukan dalam batas waktu yang ditentukan. Jika tidak, permohonan akan ditolak secara otomatis.
-                    </div>
-                    
-                    <button class="btn btn-danger" style="width: 100%;" id="payAdditionalBtn">
-                        <i class="fas fa-credit-card me-2"></i> BAYAR SEKARANG
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- Notification Bell -->
+    <div class="notification-bell" id="notificationBell">
+        <i class="fas fa-bell"></i>
+        <div class="notification-badge">1</div>
     </div>
 
     <footer class="footer">
@@ -766,262 +540,79 @@
     </footer>
 
     <script>
-        // Upload Modal
-        const uploadModal = document.getElementById("uploadModal");
-        const uploadBtn = document.getElementById("uploadBtn");
-        const closeUploadModal = document.getElementById("closeUploadModal");
-        const uploadArea = document.getElementById("uploadArea");
-        const fileInput = document.getElementById("fileInput");
-        const chooseFileBtn = document.getElementById("chooseFileBtn");
-        const fileList = document.getElementById("fileList");
-        const submitFiles = document.getElementById("submitFiles");
-        
-        // Solve Modal
-        const solveModal = document.getElementById("solveModal");
-        const solveBtn = document.getElementById("solveBtn");
-        const closeSolveModal = document.getElementById("closeSolveModal");
-        const cancelSolve = document.getElementById("cancelSolve");
-        const confirmSolve = document.getElementById("confirmSolve");
-        
-        // Additional Payment Modal
-        const additionalPaymentModal = document.getElementById("additionalPaymentModal");
-        const closeAdditionalPaymentModal = document.getElementById("closeAdditionalPaymentModal");
-        const additionalCopyBtn = document.getElementById("additionalCopyBtn");
-        const additionalCopyBtnText = document.getElementById("additionalCopyBtnText");
-        const additionalPaymentCode = "910266000001741127";
-        const payAdditionalBtn = document.getElementById("payAdditionalBtn");
-        
-        // File upload functionality
-        let uploadedFiles = [];
-        
-        uploadBtn.onclick = function() {
-            uploadModal.style.display = "block";
-        }
-        
-        closeUploadModal.onclick = function() {
-            uploadModal.style.display = "none";
-        }
-        
-        chooseFileBtn.onclick = function() {
-            fileInput.click();
-        }
-        
-        uploadArea.onclick = function() {
-            fileInput.click();
-        }
-        
-        uploadArea.ondragover = function(e) {
-            e.preventDefault();
-            uploadArea.style.backgroundColor = "#e9ecef";
-        }
-        
-        uploadArea.ondragleave = function() {
-            uploadArea.style.backgroundColor = "#f8f9fa";
-        }
-        
-        uploadArea.ondrop = function(e) {
-            e.preventDefault();
-            uploadArea.style.backgroundColor = "#f8f9fa";
-            handleFiles(e.dataTransfer.files);
-        }
-        
-        fileInput.onchange = function() {
-            handleFiles(this.files);
-        }
-        
-        function handleFiles(files) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const fileSize = (file.size / 1024 / 1024).toFixed(2);
-                
-                if (fileSize > 5) {
-                    alert(`File ${file.name} terlalu besar. Maksimal ukuran file adalah 5MB.`);
-                    continue;
-                }
-                
-                uploadedFiles.push({
-                    name: file.name,
-                    size: fileSize,
-                    file: file
-                });
-                
-                addFileToList(file.name, fileSize, uploadedFiles.length - 1);
-            }
-        }
-        
-        function addFileToList(name, size, index) {
-            const fileItem = document.createElement("div");
-            fileItem.className = "file-item";
-            fileItem.innerHTML = `
-                <div class="file-name">
-                    <i class="fas fa-file"></i>
-                    <div>
-                        <div>${name}</div>
-                        <div class="file-size">${size} MB</div>
-                    </div>
-                </div>
-                <button class="btn-remove" data-index="${index}">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            fileList.appendChild(fileItem);
+        // Calculate time until 08:00 WIB
+        function updateCountdown() {
+            const now = new Date();
             
-            // Add event listener to remove button
-            fileItem.querySelector(".btn-remove").onclick = function() {
-                const idx = parseInt(this.getAttribute("data-index"));
-                uploadedFiles.splice(idx, 1);
-                fileItem.remove();
-                
-                // Update indices
-                const removeButtons = document.querySelectorAll(".btn-remove");
-                removeButtons.forEach((btn, i) => {
-                    btn.setAttribute("data-index", i);
-                });
-            };
-        }
-        
-        submitFiles.onclick = function() {
-            if (uploadedFiles.length === 0) {
-                alert("Silahkan pilih file terlebih dahulu.");
-                return;
+            // Set target time to 08:00 WIB today or tomorrow
+            let targetTime = new Date();
+            targetTime.setHours(8, 0, 0, 0);
+            
+            // If it's already past 08:00, set to tomorrow
+            if (now > targetTime) {
+                targetTime.setDate(targetTime.getDate() + 1);
             }
             
-            // Simulate file upload
-            submitFiles.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mengupload...';
-            submitFiles.disabled = true;
+            // Calculate difference
+            const diff = targetTime - now;
             
-            setTimeout(() => {
-                alert("Dokumen berhasil diupload! Sistem akan memproses dokumen Anda.");
-                uploadModal.style.display = "none";
-                submitFiles.innerHTML = '<i class="fas fa-paper-plane me-2"></i> KIRIM DOKUMEN';
-                submitFiles.disabled = false;
+            if (diff > 0) {
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                // Clear file list
-                fileList.innerHTML = "";
-                uploadedFiles = [];
-                fileInput.value = "";
-            }, 2000);
-        }
-        
-        // Solve problem functionality
-        solveBtn.onclick = function() {
-            solveModal.style.display = "block";
-        }
-        
-        closeSolveModal.onclick = function() {
-            solveModal.style.display = "none";
-        }
-        
-        cancelSolve.onclick = function() {
-            solveModal.style.display = "none";
-        }
-        
-        confirmSolve.onclick = function() {
-            solveModal.style.display = "none";
-            // Show additional payment modal instead of alert
-            additionalPaymentModal.style.display = "block";
-        }
-        
-        // Additional payment modal functionality
-        closeAdditionalPaymentModal.onclick = function() {
-            additionalPaymentModal.style.display = "none";
-        }
-        
-        // Copy functionality for additional payment code
-        additionalCopyBtn.onclick = function() {
-            copyToClipboard(additionalPaymentCode);
-            additionalCopyBtnText.textContent = "TERSALIN!";
-            setTimeout(() => {
-                additionalCopyBtnText.textContent = "SALIN KODE";
-            }, 2000);
-        }
-        
-        function copyToClipboard(text) {
-            // Create a temporary textarea element
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.style.position = "fixed";
-            textarea.style.opacity = "0";
-            document.body.appendChild(textarea);
-            textarea.select();
-            
-            try {
-                const successful = document.execCommand("copy");
-                if (!successful) {
-                    // Fallback for modern browsers
-                    navigator.clipboard.writeText(text).then(() => {
-                        console.log("Copied to clipboard successfully");
-                    }).catch(err => {
-                        console.error("Failed to copy: ", err);
-                    });
-                }
-            } catch (err) {
-                console.error("Failed to copy: ", err);
-                // Fallback for modern browsers
-                navigator.clipboard.writeText(text).then(() => {
-                    console.log("Copied to clipboard successfully");
-                }).catch(err => {
-                    console.error("Failed to copy: ", err);
-                });
-            }
-            
-            document.body.removeChild(textarea);
-        }
-        
-        // Pay additional button
-        payAdditionalBtn.onclick = function() {
-            payAdditionalBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Memproses...';
-            payAdditionalBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert("Pembayaran tambahan sedang diproses. Anda akan diarahkan ke halaman pembayaran.");
-                additionalPaymentModal.style.display = "none";
-                payAdditionalBtn.innerHTML = '<i class="fas fa-credit-card me-2"></i> BAYAR SEKARANG';
-                payAdditionalBtn.disabled = false;
-            }, 2000);
-        }
-        
-        // Additional Countdown Timer
-        let additionalCountdownTime = 7200; // 2 hours in seconds
-        
-        function updateAdditionalCountdown() {
-            const hours = Math.floor(additionalCountdownTime / 3600);
-            const minutes = Math.floor((additionalCountdownTime % 3600) / 60);
-            const seconds = additionalCountdownTime % 60;
-            
-            const formattedTime = 
-                (hours < 10 ? "0" : "") + hours + ":" +
-                (minutes < 10 ? "0" : "") + minutes + ":" +
-                (seconds < 10 ? "0" : "") + seconds;
-            
-            document.getElementById("additionalCountdown").textContent = formattedTime;
-            
-            if (additionalCountdownTime > 0) {
-                additionalCountdownTime--;
+                const formattedTime = 
+                    (hours < 10 ? "0" : "") + hours + ":" +
+                    (minutes < 10 ? "0" : "") + minutes + ":" +
+                    (seconds < 10 ? "0" : "") + seconds;
+                
+                document.getElementById("countdown").textContent = formattedTime;
             } else {
-                document.getElementById("additionalCountdown").textContent = "Waktu Habis";
-                payAdditionalBtn.disabled = true;
-                payAdditionalBtn.textContent = "PEMBAYARAN DITOLAK";
-                payAdditionalBtn.style.backgroundColor = "#6c757d";
+                document.getElementById("countdown").textContent = "00:00:00";
+                // Show notification that it's working hours
+                showWorkingHoursNotification();
             }
         }
         
-        // Update additional countdown every second
-        setInterval(updateAdditionalCountdown, 1000);
-        updateAdditionalCountdown(); // Initial call
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
         
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            if (event.target == uploadModal) {
-                uploadModal.style.display = "none";
+        // Notification bell functionality
+        const notificationBell = document.getElementById("notificationBell");
+        
+        notificationBell.onclick = function() {
+            alert("Notifikasi: Surat jadwal kedatangan akan dikirimkan melalui email dan SMS setelah jam kerja dimulai. Pastikan kontak Anda aktif.");
+            
+            // Remove badge after clicking
+            const badge = notificationBell.querySelector(".notification-badge");
+            if (badge) {
+                badge.style.display = "none";
             }
-            if (event.target == solveModal) {
-                solveModal.style.display = "none";
-            }
-            if (event.target == additionalPaymentModal) {
-                additionalPaymentModal.style.display = "none";
-            }
+        };
+        
+        function showWorkingHoursNotification() {
+            // Change the waiting container to show it's working hours
+            const waitingContainer = document.querySelector(".waiting-container");
+            waitingContainer.innerHTML = `
+                <div class="waiting-icon" style="color: var(--success-color);">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="waiting-title" style="color: var(--success-color);">JAM KERJA TELAH DIMULAI</div>
+                <div class="waiting-message">
+                    Proses verifikasi sedang berlangsung. Surat jadwal kedatangan akan segera dikirimkan melalui email dan SMS.
+                </div>
+                <div class="status-badge" style="background-color: var(--info-color);">
+                    <i class="fas fa-spinner fa-spin me-1"></i> SEDANG DIPROSES
+                </div>
+            `;
         }
+        
+        // Simulate receiving notification after some time
+        setTimeout(() => {
+            // You can add more sophisticated notification logic here
+            console.log("Checking for updates...");
+        }, 30000); // Check every 30 seconds
     </script>
 </body>
 </html>
